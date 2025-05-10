@@ -12,3 +12,6 @@ def iso_check(s, t):
         mapping_ts[char_t] = char_s
     
     return True
+
+print(iso_check("egg", "boo"))
+print(iso_check("foo", "bar"))

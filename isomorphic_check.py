@@ -1,22 +1,14 @@
-def isomorphic():
-    str1 = input("Enter first word: ").lower()
-    str2 = input("Enter second word: ").lower()
+def iso_check(s, t):
+    if len(s) != len(t):
+        return False
     
-    if len(str1) == len(str2):
-        str3 = str2
-        for i in range(len(str1)):
-            str3 = str3.replace(str2[i], str1[i])
-        
-        str4 = str1
-        for i in range(len(str2)):
-            str4 = str4.replace(str4[i], str2[i])
-        
-        if str1 == str3 and str2 == str4:
-            print("These strings are isomorphic.")
-        else:
-            print("These strings are non-isomorphic.")
+    mapping_st = {}
+    mapping_ts = {}
 
-    else:
-        print("Length difference: Strings are non-isomorphic by default.")
-
-isomorphic()
+    for char_s, char_t in zip(s, t):
+        if mapping_st.get(char_s, char_t) != char_t or mapping_ts.get(char_t, char_s) != char_s:
+            return False
+        mapping_st[char_s] = char_t
+        mapping_ts[char_t] = char_s
+    
+    return True
